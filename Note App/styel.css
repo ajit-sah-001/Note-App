@@ -1,0 +1,739 @@
+/* Root Variables for Colors and Consistency */
+:root {
+    --pink: #ff6f91;
+    /* Vibrant pink */
+    --blue: #6b48ff;
+    /* Deep blue */
+    --light-pink: #ffb1c1;
+    /* Soft pink accent */
+    --light-blue: #a29bfe;
+    /* Light blue gradient */
+    --white: #fff;
+    /* Clean background */
+    --text: #2d1b4e;
+    /* Dark text for contrast */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    --shadow-dark: rgba(0, 0, 0, 0.2);
+    /* Stronger shadow */
+    --border: #e0e0e0;
+    /* Neutral border */
+    --spacing-xs: 0.3125rem;
+    /* 5px */
+    --spacing-sm: 0.625rem;
+    /* 10px */
+    --spacing-md: 1.25rem;
+    /* 20px */
+    --spacing-lg: 1.875rem;
+    /* 30px */
+    --spacing-xl: 3.125rem;
+    /* 50px */
+    --font-base: 1rem;
+    /* 16px */
+    --font-lg: 1.5rem;
+    /* 24px */
+    --font-xl: 2.25rem;
+    /* 36px */
+    --radius-sm: 0.5rem;
+    /* 8px */
+    --radius-md: 0.75rem;
+    /* 12px */
+    --radius-lg: 1rem;
+    /* 16px */
+}
+
+/* Reset and Base Styles */
+html {
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, var(--light-blue), var(--light-pink));
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* Container Styling */
+.container {
+    width: 90%;
+    max-width: 75rem;
+    /* 1200px */
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 0.75rem 2rem var(--shadow-light);
+    text-align: center;
+    margin: var(--spacing-xl) auto;
+    min-height: 43.75rem;
+    /* 700px */
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0.375rem;
+    /* 6px */
+    background: linear-gradient(90deg, var(--pink), var(--blue));
+}
+
+/* Heading Styling */
+h2 {
+    font-size: var(--font-xl);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 700;
+    color: var(--blue);
+    position: relative;
+    animation: slideIn 0.8s ease-out;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    bottom: -0.75rem;
+    left: 15%;
+    width: 70%;
+    height: 0.25rem;
+    background: var(--pink);
+    border-radius: 0.125rem;
+}
+
+/* Input Section */
+.textarea-container {
+    display: flex;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) auto;
+    align-items: stretch;
+    max-width: 100%;
+}
+
+#user {
+    width: 80%;
+    min-height: 10rem;
+    border: 0.125rem solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-base);
+    padding: var(--spacing-md);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    resize: vertical;
+    background: var(--white);
+}
+
+#user:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 0.1875rem rgba(107, 72, 255, 0.2);
+}
+
+#addNote {
+    width: 20%;
+    font-size: 1.125rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--blue), var(--pink));
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: transform 0.3s;
+    padding: var(--spacing-md);
+}
+
+#addNote:hover {
+    transform: translateY(-0.25rem);
+}
+
+#addNote:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.1875rem rgba(107, 72, 255, 0.3);
+}
+
+/* Notes List */
+ul {
+    width: 95%;
+    margin: var(--spacing-lg) auto;
+    display: grid;
+    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    padding: 0;
+    list-style: none;
+}
+
+/* Note Card */
+ul>li {
+    min-height: 12.5rem;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md) var(--spacing-sm) 3.75rem;
+    text-align: center;
+    transition: transform 0.3s;
+    background: linear-gradient(165deg, var(--white), var(--light-pink));
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    align-content: center;
+}
+
+ul>li:nth-child(4n+1) {
+    border-top: 0.375rem solid var(--pink);
+}
+
+ul>li:nth-child(4n+2) {
+    border-top: 0.375rem solid var(--blue);
+}
+
+ul>li:nth-child(4n+3) {
+    border-top: 0.375rem solid var(--light-blue);
+}
+
+ul>li:nth-child(4n+4) {
+    border-top: 0.375rem solid var(--light-pink);
+}
+
+ul>li:hover {
+    transform: translateY(-0.375rem);
+}
+
+/* Delete Button */
+.delete-btn {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: var(--pink);
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    font-size: var(--font-base);
+    color: var(--white);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.delete-btn:hover {
+    /* transform: rotate(9deg); */
+    /* background: var(--pink); */
+    background-color: rgb(203, 238, 255);
+    color: red;
+    transition: all ease-in-out 0.6s;
+
+}
+
+.delete-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.1875rem rgba(255, 111, 145, 0.3);
+}
+
+/* Edit Button */
+.edit-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--light-blue));
+    color: var(--white);
+    border: none;
+    padding: 0.875rem 0;
+    cursor: pointer;
+    font-size: var(--font-base);
+    transition: background 0.3s;
+}
+
+.edit-btn:hover {
+    background: linear-gradient(90deg, var(--light-blue), var(--blue));
+}
+
+.edit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.1875rem rgba(107, 72, 255, 0.3);
+}
+
+/* Edit Mode */
+.edit-mode {
+    background: var(--light-blue);
+    transform: scale(1.02);
+}
+
+.edit-mode .save-btn,
+.edit-mode .cancel-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Save and Cancel Buttons */
+.save-btn,
+.cancel-btn {
+    margin: var(--spacing-sm) 0;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: transform 0.3s;
+    width: 100%;
+    color: var(--white);
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+}
+
+.cancel-btn {
+    background: linear-gradient(135deg, #ff3867, #d81b60);
+}
+
+.save-btn:hover,
+.cancel-btn:hover {
+    transform: translateY(-0.125rem);
+}
+
+.save-btn:focus,
+.cancel-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.1875rem rgba(76, 175, 80, 0.3);
+}
+
+/* Edit Textarea */
+.edit-textarea {
+    width: 100%;
+    min-height: 8rem;
+    border: 0.125rem solid var(--blue);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    transition: border-color 0.3s;
+    resize: vertical;
+}
+
+.edit-textarea:focus {
+    border-color: var(--pink);
+    outline: none;
+}
+
+/* Note Content and Timestamp */
+.note-content {
+    font-size: var(--font-base);
+    line-height: 1.6;
+    word-wrap: break-word;
+    color: var(--text);
+    padding: var(--spacing-sm);
+}
+
+.timestamp {
+    font-size: 0.75rem;
+    color: #7a6b99;
+    margin: var(--spacing-sm) 0;
+    font-style: italic;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.fade-in {
+    animation: slideIn 0.5s ease;
+}
+
+.delete-animation {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+.pulse-animation {
+    animation: pulse 1s infinite;
+}
+
+/* Additional Utility Classes */
+.hidden {
+    display: none;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Accessibility Enhancements */
+:focus-visible {
+    outline: 0.125rem solid var(--blue);
+    outline-offset: 0.125rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        width: 95%;
+        padding: var(--spacing-md);
+    }
+
+    ul {
+        grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    }
+}
+
+@media (max-width: 1000px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    #user {
+        min-height: 9rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .textarea-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    #user,
+    #addNote {
+        width: 100%;
+    }
+
+    ul {
+        grid-template-columns: 1fr;
+    }
+
+    h2 {
+        font-size: var(--font-lg);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: var(--spacing-lg) auto;
+        padding: var(--spacing-sm);
+    }
+
+    ul>li {
+        min-height: 10rem;
+        padding-bottom: 3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    #addNote {
+        font-size: 0.875rem;
+    }
+}
+
+/* Extra Styling for Visual Depth */
+.container-header {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 0.0625rem solid var(--border);
+}
+
+.note-wrapper {
+    position: relative;
+    margin: var(--spacing-sm);
+}
+
+.note-border {
+    border: 0.0625rem dashed var(--light-blue);
+    padding: var(--spacing-sm);
+}
+
+.button-group {
+    display: flex;
+    gap: var(--spacing-xs);
+    justify-content: center;
+}
+
+/* Hover Effects */
+.note-content:hover {
+    background: rgba(255, 111, 145, 0.1);
+}
+
+.timestamp:hover {
+    color: var(--pink);
+}
+
+/* Custom Card Effects */
+.card-highlight {
+    box-shadow: 0 0 0.5rem var(--light-blue);
+}
+
+.card-active {
+    border: 0.125rem solid var(--blue);
+}
+
+/* Animation Variants */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-0.5rem);
+    }
+}
+
+.bounce-animation {
+    animation: bounce 2s infinite;
+}
+
+/* Form Enhancements */
+.form-error {
+    color: #ff3867;
+    font-size: 0.875rem;
+    margin-top: var(--spacing-xs);
+}
+
+.form-success {
+    color: #4caf50;
+    font-size: 0.875rem;
+    margin-top: var(--spacing-xs);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-pink);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--blue);
+    border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--pink);
+}
+
+/* Placeholder Styling */
+#user::placeholder {
+    color: #7a6b99;
+    opacity: 0.7;
+}
+
+.edit-textarea::placeholder {
+    color: #7a6b99;
+    opacity: 0.7;
+}
+
+/* Focus States for Accessibility */
+#user:focus-visible,
+#addNote:focus-visible,
+.delete-btn:focus-visible,
+.edit-btn:focus-visible,
+.save-btn:focus-visible,
+.cancel-btn:focus-visible {
+    outline: 0.125rem solid var(--pink);
+    outline-offset: 0.125rem;
+}
+
+/* Card Transition Effects */
+.card-enter {
+    opacity: 0;
+    transform: translateY(1rem);
+}
+
+.card-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Additional Spacing Utilities */
+.mt-sm {
+    margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+    margin-top: var(--spacing-md);
+}
+
+.mb-sm {
+    margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Text Utilities */
+.text-bold {
+    font-weight: 700;
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Border Utilities */
+.border-pink {
+    border-color: var(--pink);
+}
+
+.border-blue {
+    border-color: var(--blue);
+}
+
+/* Background Utilities */
+.bg-pink {
+    background: var(--pink);
+}
+
+.bg-blue {
+    background: var(--blue);
+}
+
+/* Shadow Utilities */
+.shadow-sm {
+    box-shadow: 0 0.25rem 0.5rem var(--shadow-light);
+}
+
+.shadow-md {
+    box-shadow: 0 0.5rem 1rem var(--shadow-dark);
+}
+
+/* Flex Utilities */
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Grid Utilities */
+.grid {
+    display: grid;
+}
+
+.grid-gap-sm {
+    gap: var(--spacing-sm);
+}
+
+.grid-gap-md {
+    gap: var(--spacing-md);
+}
+
+/* Opacity Utilities */
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.opacity-75 {
+    opacity: 0.75;
+}
+
+/* Animation Utilities */
+.animate-slide {
+    animation: slideIn 0.5s ease;
+}
+
+.animate-fade {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+/* Error Fixes and Enhancements */
+input,
+textarea,
+button {
+    font-family: inherit;
+}
+
+ul>li:empty {
+    display: none;
+}
+
+/* i make */
+.delete-all {
+    width: 100px;
+    min-height: 30px;
+    background-color: rgb(255, 139, 139);
+    color: white;
+    border-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15pt;
+    border: none;
+}
+.delete-all:hover {
+    color: red;
+    background-color: #b2f0ff;
+    border: none;
+    transition: all ease-in-out 0.6s;
+    cursor: pointer;
+}
